@@ -2,8 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\APIUserController;
 use App\Http\Controllers\SocaliteController;
+=======
+>>>>>>> parent of 3029f11... passport token generated
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +23,12 @@ use App\Http\Controllers\SocaliteController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+<<<<<<< HEAD
 
 Route::post('login',[APIUserController::class,'userLogin']);
 Route::get('login',[APIUserController::class,'userLogin']);
 Route::post('register',[APIUserController::class,'userRegister']);
 
 
+=======
+>>>>>>> parent of 3029f11... passport token generated
