@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocaliteController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::prefix('facebook')->name('facebook.')->group( function(){
+    Route::get('auth',[SocaliteController::class,'loginUsingFacebook'])->name('login');
+    Route::get('callback',[SocaliteController::class,'callbackFromFacebook'])->name('callback');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

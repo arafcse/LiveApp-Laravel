@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIUserController;
+use App\Http\Controllers\SocaliteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,13 @@ use App\Http\Controllers\APIUserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::post('login',[APIUserController::class,'userLogin']);
+Route::get('login',[APIUserController::class,'userLogin']);
+Route::post('register',[APIUserController::class,'userRegister']);
 
-Route::group(['middleware' => 'auth:api'],function(){
-    Route::get('profile-details',[APIUserController::class,'userDetails']);
-});
+
