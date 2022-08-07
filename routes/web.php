@@ -30,3 +30,7 @@ Route::prefix('facebook')->name('facebook.')->group( function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/chat', [App\Http\Controllers\HomeController::class, 'chat'])->name('chat');
+Route::get('/messages', [App\Http\Controllers\HomeController::class, 'messages'])->name('messages');
+
+Route::post('/messages', [App\Http\Controllers\HomeController::class, 'messageStore'])->name('messageStore');
