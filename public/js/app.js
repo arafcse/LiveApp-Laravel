@@ -22920,7 +22920,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "04e9bbe7767efb104980",
   cluster: "mt1",
-  forceTLS: true
+  forceTLS: true,
+  wsHost: window.location.hostname,
+  wsPort: 6001
 });
 
 /***/ }),

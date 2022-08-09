@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocaliteController;
+use App\Http\Controllers\BotManController;
 
 
 
@@ -17,10 +18,8 @@ use App\Http\Controllers\SocaliteController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-
-
 
 Route::prefix('facebook')->name('facebook.')->group( function(){
     Route::get('auth',[SocaliteController::class,'loginUsingFacebook'])->name('login');
@@ -34,3 +33,8 @@ Route::get('/chat', [App\Http\Controllers\HomeController::class, 'chat'])->name(
 Route::get('/messages', [App\Http\Controllers\HomeController::class, 'messages'])->name('messages');
 
 Route::post('/messages', [App\Http\Controllers\HomeController::class, 'messageStore'])->name('messageStore');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::match (['get','post'], 'botman',[BotManController::class,"handle"]);

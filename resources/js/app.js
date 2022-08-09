@@ -1,5 +1,6 @@
 require('./bootstrap');
-import { createApp} from 'vue';
+
+import { createApp } from 'vue';
 
 import chat from './components/chat.vue';
 
