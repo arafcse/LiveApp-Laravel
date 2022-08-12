@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Events\SendMessage;
+use App\Notifications\PostLikeNotification;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = Post::with('user')->get();
+
+        return view('home',compact('posts'));
     }
 
     public function chat()
@@ -50,5 +54,19 @@ class HomeController extends Controller
         broadcast(new SendMessage($user, $messages))->toOthers();
 
         return 'message sent';
+    }
+
+    public function postLike(Request $request){
+        $user = auth()->user();
+
+        $post = Post::whereId($request->post_id)->with('user')->first();
+
+        $author = $post->user;
+
+        if($author){
+            $author->notify(new PostLikeNotification($user,$post));
+        }
+
+        return response()->json(['success']);
     }
 }

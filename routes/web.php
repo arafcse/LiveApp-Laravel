@@ -18,7 +18,7 @@ use App\Http\Controllers\BotManController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');
 });
 
 Route::prefix('facebook')->name('facebook.')->group( function(){
@@ -29,12 +29,13 @@ Route::prefix('facebook')->name('facebook.')->group( function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/post-like', [App\Http\Controllers\HomeController::class, 'postLike']);
+
 Route::get('/chat', [App\Http\Controllers\HomeController::class, 'chat'])->name('chat');
 Route::get('/messages', [App\Http\Controllers\HomeController::class, 'messages'])->name('messages');
 
 Route::post('/messages', [App\Http\Controllers\HomeController::class, 'messageStore'])->name('messageStore');
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::match (['get','post'], 'botman',[BotManController::class,"handle"]);

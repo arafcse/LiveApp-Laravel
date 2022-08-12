@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }} <a href="chat">Chat</a>
+
+                    <posts :posts="{{ $posts }}" :user="{{ auth()->user() }}" :user_notifications="{{ auth()->user()->notifications }}" />
                 </div>
             </div>
         </div>

@@ -20,3 +20,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('chat-channel',function(){
     return Auth::check();
 });
+
+Broadcast::channel('post_like.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
+});
