@@ -56,4 +56,5 @@ class User extends Authenticatable
     public function receivesBroadcasNotificationsOn(){
         return 'post_like'. $this->id;
     }
+
 }
